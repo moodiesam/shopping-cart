@@ -1,14 +1,23 @@
 .shopItem {
     display: grid;
-    grid-template-rows: 2fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr;
     width: 200px;
     height: 400px;
     justify-items: center;
+    align-items: center;
     border: 1px solid black;
     border-radius: 5px;
 }
 
 .itemImage {
+    max-width: 120px;
     max-height: 180px;
-    width: auto;
+}
+.addToCart {
+    display: flex;
+    flex-direction: row;
+}
+
+.quantityInput {
+    max-width: 50px;
 }

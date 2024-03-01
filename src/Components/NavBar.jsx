@@ -5,9 +5,9 @@ import "../styles/NavBar.css"
 export default function NavBar() {
     return (
         <nav className="navBar">
-            <div><a className="navLink">Welcome</a></div>
-            <div><a className="navLink">Shop</a></div>
-            <div><a className="navLink">Checkout</a></div>
+            <button><a className="navLink">Welcome</a></button>
+            <button><a className="navLink">Shop</a></button>
+            <button><a className="navLink">Checkout</a></button>
         </nav>
     )
 }

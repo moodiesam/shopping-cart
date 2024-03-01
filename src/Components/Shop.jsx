@@ -2,32 +2,46 @@
 
 import { useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
+import "../styles/Shop.css"
 
 export default function Shop () {
     const [shopItems, setShopItems] = useState([]);
-    const [data, setData] = useState(null)
-    const [imageURL, setImageURL] = useState(null)
-    const [itemDescription, setItemDescription] = useState(null)
+    
 
     //useEffect function to fetch api of items
 
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/1`, {mode: "cors"})
-            .then((response) => response.json())
-            .then((response) => setData(response))
-            .catch((error) => console.log(error))
-    })
+        async function getShopItems() {
+            try {
+                const items = []
+                for (let i=1; i<7; i++) {
+                    const response = await fetch(`https://fakestoreapi.com/products/${i}`, {mode: "cors"})
+                    const data = await response.json();
+                    items.push(data)
+                }
+                setShopItems(items)
+                console.log(items)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getShopItems();
+    }, []);
 
     //function to handle when item is added to cart
+    
+
+    
 
     return (
         <section className="shopItems">
-            {/* map items to build the cards */}
-            <ItemCard 
-                imageURL={data.image}
-                itemDescription={data.title}
-                price={data.price}
+            {shopItems.map(item => (
+                <ItemCard 
+                key={item.id}
+                data={item}
             />
+            ))}
+            
         </section>
     )
 }

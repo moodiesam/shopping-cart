@@ -2,6 +2,6 @@
 
 export default function Homepage() {
     return (
-        <div>Pages will go here</div>
+        <h1>Who's ready to do some shopping???</h1>
     )
 }

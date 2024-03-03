@@ -31,15 +31,14 @@ export default function Shop () {
     //function to handle when item is added to cart
     
     function addToCart(id, quantity) {
+        if (quantity<1) return;
         const product = shopItems[id - 1];
-        console.log(shoppingCart)
         setShoppingCart(
             [
                 ...shoppingCart,
                 {product: product, quantity: quantity}
             ]
         );
-        console.log(shoppingCart)
     }
     
 

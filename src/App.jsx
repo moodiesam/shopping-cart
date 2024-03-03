@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Homepage from "./Components/Homepage";
 import NavBar from "./Components/NavBar";
-import Shop from "./Components/Shop";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([])
@@ -9,10 +8,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Shop
-        shoppingCart={shoppingCart}
-        setShoppingCart={setShoppingCart}
-      />
+      <Outlet context={[shoppingCart, setShoppingCart]} />
     </>
   )
 }

@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import ItemCard from "./ItemCard";
 import "../styles/Shop.css"
+import { useOutletContext } from "react-router-dom";
 
 export default function Shop () {
+    const [shoppingCart, setShoppingCart] = useOutletContext();
     const [shopItems, setShopItems] = useState([]);
-    
 
     //useEffect function to fetch api of items
 
@@ -20,7 +21,6 @@ export default function Shop () {
                     items.push(data)
                 }
                 setShopItems(items)
-                console.log(items)
             } catch (error) {
                 console.log(error)
             }
@@ -30,7 +30,17 @@ export default function Shop () {
 
     //function to handle when item is added to cart
     
-
+    function addToCart(id, quantity) {
+        const product = shopItems[id - 1];
+        console.log(shoppingCart)
+        setShoppingCart(
+            [
+                ...shoppingCart,
+                {product: product, quantity: quantity}
+            ]
+        );
+        console.log(shoppingCart)
+    }
     
 
     return (
@@ -39,6 +49,7 @@ export default function Shop () {
                 <ItemCard 
                 key={item.id}
                 data={item}
+                addToCart={addToCart}
             />
             ))}
             

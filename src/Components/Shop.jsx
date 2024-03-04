@@ -8,6 +8,7 @@ import { useOutletContext } from "react-router-dom";
 export default function Shop () {
     const [shoppingCart, setShoppingCart] = useOutletContext();
     const [shopItems, setShopItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     //useEffect function to fetch api of items
 
@@ -23,6 +24,8 @@ export default function Shop () {
                 setShopItems(items)
             } catch (error) {
                 console.log(error)
+            } finally {
+                setLoading(false)
             }
         }
         getShopItems();
@@ -31,16 +34,22 @@ export default function Shop () {
     //function to handle when item is added to cart
     
     function addToCart(id, quantity) {
+        // only add if quantity is more then zero
         if (quantity<1) return;
+
+        // if product exists, replace it with new ammount
+        let filteredCart = shoppingCart.filter(a => a.product.id !== id);
+
         const product = shopItems[id - 1];
         setShoppingCart(
             [
-                ...shoppingCart,
+                ...filteredCart,
                 {product: product, quantity: quantity}
             ]
         );
     }
     
+    if (loading) return <p className="loadingBanner">Loading...</p>
 
     return (
         <section className="shopItems">

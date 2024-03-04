@@ -18,7 +18,8 @@ export default function ItemCard ({ data, addToCart }) {
                 </button>
                 <input 
                     className="quantityInput"   
-                    value={quantity} onChange={e => setQuantity(e.target.value)} 
+                    value={quantity} onChange={e => (
+                        setQuantity(e.target.value))} 
                     type="number" 
                     max={10}
                     min={1}

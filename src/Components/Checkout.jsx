@@ -21,6 +21,12 @@ export default function Checkout() {
 
     getCartTotal()
 
+    // function to erase item from cart
+
+    function deleteFromCart(item) {
+        let filteredCart = shoppingCart.filter(a => a.product.id !== item);
+        setShoppingCart(filteredCart);
+    }
     
 
     return (
@@ -30,6 +36,7 @@ export default function Checkout() {
                 <CartItem 
                     key={item.product.id}
                     data={item}
+                    deleteFromCart={deleteFromCart}
                 />
             ))}
             <h3>Total: ${total}</h3>

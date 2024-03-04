@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar shoppingCart={shoppingCart} />
       <Outlet context={[shoppingCart, setShoppingCart]} />
     </>
   )

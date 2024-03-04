@@ -3,12 +3,24 @@
 import { Link } from "react-router-dom"
 import "../styles/NavBar.css"
 
-export default function NavBar() {
+export default function NavBar({ shoppingCart }) {
+    let total = 0;
+
+    function totalItems() {
+        shoppingCart.map(item => (
+            total = total + Number(item.quantity)
+        ))
+    }
+    totalItems()
+
     return (
-        <nav className="navBar">
-            <button><Link to={`homepage`} className="navLink">Welcome</Link></button>
-            <button><Link to={`shop`} className="navLink">Shop</Link></button>
-            <button><Link to={`checkout`} className="navLink">Checkout</Link></button>
-        </nav>
+        <header className="header">
+            <h1 className="shopTitle">Shop Some Stuff</h1>
+            <nav className="navBar">
+                <Link to={`homepage`} className="navLink">Welcome</Link>
+                <Link to={`shop`} className="navLink">Shop</Link>
+                <Link to={`checkout`} className="navLink">Checkout({total}) </Link>
+            </nav>
+        </header>
     )
 }

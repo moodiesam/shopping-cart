@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  
+  display: flex;
+  justify-content: center;
 }
 
 #root {
@@ -8,5 +9,6 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  max-width: 1200px;
+  
+  
 }
